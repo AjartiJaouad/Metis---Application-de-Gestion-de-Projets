@@ -15,3 +15,11 @@ create table  projets (
 
     foreign key(membre_id)  references membres(id)
 );
+create table activité (
+    id int auto_increment primary key ,
+    descripption varchar(250) not null,
+    dateActivite date not null ,
+    statut varchar(100) not null ,
+    projets_id int not null ,
+    foreign key  (projets_id) references projets(id)
+);
