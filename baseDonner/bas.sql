@@ -23,3 +23,8 @@ create table activité (
     projets_id int not null ,
     foreign key  (projets_id) references projets(id)
 );
+-- je va ajouter une colone a le tableux projets 
+ alter table projets add duree int default null ;
+ -- je va ajouter une colone a le tableux projets 
+
+ alter table projets add budget int default null ;
