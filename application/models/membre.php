@@ -35,17 +35,43 @@ class Membre extends BaseModel
     {
         return $this->email;
     }
-    public function set_email(string  $email)
+    public function set_email(string $email)
     {
-        $this->email = trim($email);
+        $email = trim($email);
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new Exception("Email invalide");
+        }
+
+        $sql = "SELECT COUNT(*) FROM {$this->table} WHERE email = :email";
+        if ($this->id) {
+            $sql .= " AND id != :id";
+        }
+
+        $stmt = $this->db->prepare($sql);
+
+        $params = ['email' => $email];
+        if ($this->id) {
+            $params['id'] = $this->id;
+        }
+
+        $stmt->execute($params);
+
+        if ($stmt->fetchColumn() > 0) {
+            throw new Exception("Email déjà utilisé");
+        }
+
+        $this->email = $email;
     }
+
+
     public function get_date_inscription(): string
     {
         return $this->date_inscription;
     }
     public function set_date_inscription(string $date)
     {
-        return
+     
             $this->date_inscription = $date;
     }
 }
