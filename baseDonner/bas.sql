@@ -15,16 +15,19 @@ create table  projets (
 
     foreign key(membre_id)  references membres(id)
 );
-create table activité (
+create table activites (
     id int auto_increment primary key ,
-    descripption varchar(250) not null,
+    description varchar(250) not null,
     dateActivite date not null ,
     statut varchar(100) not null ,
     projets_id int not null ,
     foreign key  (projets_id) references projets(id)
 );
+
+
 -- je va ajouter une colone a le tableux projets 
  alter table projets add duree int default null ;
  -- je va ajouter une colone a le tableux projets 
 
  alter table projets add budget int default null ;
+
