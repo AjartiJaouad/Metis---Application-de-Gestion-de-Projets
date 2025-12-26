@@ -1,53 +1,47 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+require_once __DIR__ . '/../application/Database/Database.php';
 
-// require_once __DIR__ . '/../application/Database/Database.php';
-// require_once __DIR__ . '/../application/Noyau/BaseModel.php';
-// require_once __DIR__ . '/../application/Models/Membre.php';
-// require_once __DIR__ . '/../application/Models/Projet.php';
-// require_once __DIR__ . '/../application/Models/Activite.php';
+require_once __DIR__ . '/../application/noyau/BaseModel.php';
+require_once __DIR__ . '/../application/models/Activite.php';
+require_once __DIR__ . '/../application/models/Membre.php';
+require_once __DIR__ . '/../application/models/Projet.php';
+require_once __DIR__ . '/../application/models/ProjetCourt.php';
+require_once __DIR__ . '/../application/models/ProjetLong.php';
 
-// use App\Models\Membre;
-// use App\Models\Projet;
-// use App\Models\Activite;
+use app\models\Activite;
 
-// // Test inclusion
-// echo "Fichiers inclus correctement <br>";
+$activite = new Activite();
+while (true) {
+    echo "\n ***{ MENU PRINCIPAL}***\n";
+    echo "1. Gestion des membres\n";
+    echo "2. Gestion des projets\n";
+    echo "3. Gestion des activités\n";
+    echo "0. Quitter\n";
+    $choix = readline("Votre choix :");
+    switch ($choix) {
+        case 1:
+            echo "Gestion des membres \n";
 
-// // Test création d'un membre
-// $membre = new Membre();
-// $membre->nom = "Anas";
-// $membre->email = "an.com";
-// $membre->date_inscription = date('Y-m-d');
-// $membre->sauvegarder();
+            break;
+        case 2:
+            echo "Gestion des Projets\n";
 
-// echo "Membre créé ";
+            break;
+        case 3:
+            echo "Gestion des activites \n";
 
+            break;
 
-// require_once __DIR__ . '/../application/Database/Database.php';
-// require_once __DIR__ . '/../application/Noyau/BaseModel.php';
-// require_once __DIR__ . '/../application/Models/Membre.php';
+        case 0:
+            echo " A bien toump\n";
+            exit;
 
-// use App\Models\Membre;
+            break;
 
-// try {
-//     $membre = new Membre();
-
-//     $membre->set_nom("Anas");
-//     $membre->set_email("anas@test.com");
-//     $membre->set_date_inscription(date('Y-m-d'));
-
-//     echo "✅ Email valide et unique <br>";
-//     echo "Nom : " . $membre->get_nom() . "<br>";
-//     echo "Email : " . $membre->get_email() . "<br>";
-//     echo "Date : " . $membre->get_date_inscription();
-
-// } catch (Exception $e) {
-//     echo "❌ Erreur : " . $e->getMessage();
-// }
-
-
-
-
-
-
-
+        default:
+            echo "choix invalide \n";
+            break;
+    }
+}
