@@ -28,4 +28,19 @@ class Activite extends BaseModel
             'projets_id'   => $projet_id
         ]);
     }
+
+    public function modifierActivite(int $id, string $description, string $statut)
+    {
+        $sql = "UPDATE activites 
+            SET description = :description, statut = :statut
+            WHERE id = :id";
+
+        $stmt = $this->db->prepare($sql);
+
+        return $stmt->execute([
+            'description' => $description,
+            'statut'      => $statut,
+            'id'          => $id
+        ]);
+    }
 }
