@@ -44,11 +44,25 @@ class Activite extends BaseModel
         ]);
     }
 
-    public function supprimerActivite(int $id){
+    public function supprimerActivite(int $id)
+    {
         $sql = "DELETE FROM activites WHERE id = :id";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute(
-            [ 'id' =>$id]
+            ['id' => $id]
         );
+    }
+
+    public function historiqueProjet(
+        int $projet_id
+    ) {
+        $sql = "SELECT *FROM activites where projets_id = :projets_id order by dateActivite DESC  ";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(
+            [
+                'projetss_id' => $projet_id
+            ]
+        );
+        return $stmt->fetchAll();
     }
 }
