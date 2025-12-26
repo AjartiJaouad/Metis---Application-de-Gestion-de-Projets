@@ -43,4 +43,12 @@ class Activite extends BaseModel
             'id'          => $id
         ]);
     }
+
+    public function supprimerActivite(int $id){
+        $sql = "DELETE FROM activites WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute(
+            [ 'id' =>$id]
+        );
+    }
 }
