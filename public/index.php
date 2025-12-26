@@ -22,7 +22,15 @@ while (true) {
     $choix = readline("Votre choix :");
     switch ($choix) {
         case 1:
-            echo "Gestion des membres \n";
+            $idProjet = (int) readline("ID du Projet :");
+            $desc = readline("Description : " );
+            $statut = readline("Statut : ");
+
+            if ($activite->ajouterActivite($idProjet,$desc , $statut)){
+                echo "activite ajoutee avec succes \n";
+            }else {
+                echo "erreur de lajoute";
+            }
 
             break;
         case 2:
